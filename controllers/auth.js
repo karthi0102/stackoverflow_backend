@@ -1,13 +1,7 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
-import dotenv from 'dotenv'
-import sendMail from '../middlewares/otp.js'
-dotenv.config()
-const accountSid = process.env.ACCOUNTSID
-const authToken = process.env.AUTHTOKEN
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const client = require('twilio')(accountSid,authToken)
+
+
 
 
 // import {client as client(accountSid,authToken)} from 'twilio'
