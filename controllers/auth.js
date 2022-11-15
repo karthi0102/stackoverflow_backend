@@ -29,15 +29,16 @@ export const login = async(req,res)=>{
     const {mobile} = req.body;
     const result ={
         mobile,
-        name:'Anonyms',
+        name:'Anonymus',
         password:"mobile",
-        email:null
+        email:' '
     }
     try{
-       var existinguser = await users.find({mobile})
+       var existinguser = await users.findOne({mobile})
        if(!existinguser){
-        existinguser=await users.create(result)
-       
+       const user=await users.create(result)
+        const token = jwt.sign({email:existinguser.email,id:existinguser._id},process.env.JWT_SECRET,{expiresIn:'1h'})
+       return res.status(200).json({result:existinguser,token})
        }
         const token = jwt.sign({email:existinguser.email,id:existinguser._id},process.env.JWT_SECRET,{expiresIn:'1h'})
         res.status(200).json({result:existinguser,token})
