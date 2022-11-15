@@ -31,7 +31,7 @@ export const login = async(req,res)=>{
         mobile,
         name:'Anonymus',
         password:"mobile",
-        email:' '
+        email:`anonymus${mobile}@gmail.com`
     }
     try{
        var existinguser = await users.findOne({mobile})
